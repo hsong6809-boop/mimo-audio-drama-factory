@@ -1,0 +1,101 @@
+# MiMo Audio Drama Factory - Default Configuration
+
+project:
+  name: "mimo-audio-drama-factory"
+  version: "0.1.0"
+  output_dir: "./output"
+
+# MiMo API 配置
+mimo:
+  api_base: "https://api.mimo.xiaomi.com/v1"
+  model: "mimo-large"
+  max_retries: 3
+  retry_delay: 2.0
+  timeout: 120
+
+# TTS 配置
+tts:
+  api_base: "https://api.mimo.xiaomi.com/v1/tts"
+  sample_rate: 24000
+  output_format: "wav"
+  # 情感参数映射
+  emotion_params:
+    calm:
+      speed: 0.85
+      pitch: 0
+      pause_ms: 200
+      volume: 0.8
+    excited:
+      speed: 1.2
+      pitch: 2
+      pause_ms: 50
+      volume: 1.0
+    sad:
+      speed: 0.75
+      pitch: -1
+      pause_ms: 300
+      volume: 0.6
+    angry:
+      speed: 1.1
+      pitch: 3
+      pause_ms: 100
+      volume: 1.1
+    solemn:
+      speed: 0.9
+      pitch: -1
+      pause_ms: 250
+      volume: 0.9
+    fearful:
+      speed: 1.15
+      pitch: 1
+      pause_ms: 150
+      volume: 0.5
+    happy:
+      speed: 1.1
+      pitch: 2
+      pause_ms: 80
+      volume: 0.95
+    neutral:
+      speed: 1.0
+      pitch: 0
+      pause_ms: 100
+      volume: 0.85
+
+# 剧本生成配置
+script:
+  default_episodes: 10
+  default_characters: 5
+  words_per_episode: [2000, 3000]
+  supported_genres:
+    - "仙侠"
+    - "都市"
+    - "悬疑"
+    - "科幻"
+    - "历史"
+    - "言情"
+    - "武侠"
+    - "恐怖"
+    - "喜剧"
+    - "军旅"
+
+# 音频编排配置
+audio:
+  silence_between_segments_ms: 300
+  silence_between_characters_ms: 500
+  silence_between_scenes_ms: 1000
+  bgm_fade_in_ms: 2000
+  bgm_fade_out_ms: 2000
+  target_loudness_lufs: -16
+
+# 质检配置
+quality:
+  min_words_per_segment: 5
+  max_words_per_segment: 200
+  max_silence_ms: 5000
+  voice_print_similarity_threshold: 0.85
+  auto_rewrite_max_attempts: 3
+
+# 声纹库配置
+voice_db:
+  persist_dir: "./output/voice_db"
+  collection_name: "character_voices"
